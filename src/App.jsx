@@ -48,10 +48,31 @@ function App() {
     e.preventDefault();
     const validationErrors = validate();
     if (Object.keys(validationErrors).length === 0) {
-      console.log("Form submitted successfully", formData);
+      alert("Form submitted successfully!");
+      setFormData({
+        name: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+        phone: "",
+        terms: false,
+      });
+      setErrors({});
     } else {
       setErrors(validationErrors);
     }
+  };
+
+  const handleReset = () => {
+    setFormData({
+      name: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+      phone: "",
+      terms: false,
+    });
+    setErrors({});
   };
 
   return (
@@ -63,6 +84,7 @@ function App() {
       >
         <h2 className="text-3xl font-bold mb-6 text-gray-800">
           Form Validation With React
+          <hr className="pt-1" />
         </h2>
         {/* Name */}
         <div className="mb-4">
@@ -174,6 +196,7 @@ function App() {
           </button>
           <button
             type="submit"
+            onClick={handleReset}
             className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           >
             Reset
